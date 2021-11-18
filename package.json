@@ -21,6 +21,7 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "joi": "^17.4.2",
     "lorem-ipsum": "^2.0.4",
     "nodemon": "^2.0.15",
     "pg": "^8.7.1",

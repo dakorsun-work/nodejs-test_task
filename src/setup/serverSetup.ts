@@ -1,5 +1,5 @@
 import express, { Application, Router } from 'express';
-import apiRouter from '../controlles/api';
+import apiRouter from '../controllers/api';
 
 export default async (): Promise<Application> => {
   const app = express();

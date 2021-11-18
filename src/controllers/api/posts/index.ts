@@ -1,11 +1,9 @@
 import { Router } from 'express';
+import { getPosts } from './controller';
 
 const postsRouter = Router();
 
-postsRouter.get('/', (req, res) => {
-  // todo tbd
-  res.sendStatus(200);
-});
+postsRouter.get('/', getPosts);
 
 postsRouter.post('/', (req, res) => {
   // todo tbd
