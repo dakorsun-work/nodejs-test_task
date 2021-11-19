@@ -4,7 +4,7 @@
   "description": "NodeJS REST API for managing posts",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "ts-node src/index.ts",
+    "dev": "nodemon --config ./nodemon.json --inspect-brk",
     "test": "echo \"Error: no test specified\" && exit 1",
     "db:seed:post": "ts-node src/scripts/posts.seed.ts"
   },
