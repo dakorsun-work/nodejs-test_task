@@ -48,4 +48,13 @@ export default class PostsService {
       .where('id = :id', { id })
       .execute();
   }
+
+  async delete(id: number): Promise<void> {
+    await this.connection
+      .createQueryBuilder()
+      .delete()
+      .from(Post)
+      .where('id = :id', { id })
+      .execute();
+  }
 }

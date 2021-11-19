@@ -16,6 +16,10 @@ export const updatePostSchema = Joi.object({
   content: Joi.string().optional().min(1).max(1000),
 });
 
+export const deletePostSchema = Joi.object({
+  id: Joi.number().required(),
+});
+
 export const getPosts: RequestHandler = async (req, res): Promise<void> => {
   try {
     const queryObjectValidated = queryObjectSchema.validate(req.query);
@@ -40,7 +44,9 @@ export const createPost: RequestHandler = async (req, res): Promise<void> => {
       res.status(400).send(postToCreateValidated.error.message);
       return;
     }
+
     await new PostsService(getConnection()).create(postToCreateValidated.value);
+
     res.sendStatus(200);
   } catch (e) {
     res.status(500).send(e.message);
@@ -54,8 +60,27 @@ export const updatePost: RequestHandler = async (req, res): Promise<void> => {
       res.status(400).send(postToUpdateValidated.error.message);
       return;
     }
+
     const { id, ...updateBody } = postToUpdateValidated.value;
     await new PostsService(getConnection()).update(id, updateBody);
+
+    res.sendStatus(200);
+  } catch (e) {
+    res.status(500).send(e.message);
+  }
+};
+
+export const deletePost: RequestHandler = async (req, res) => {
+  try {
+
+    const postToDeleteValidated = deletePostSchema.validate({ ...req.params });
+    if (postToDeleteValidated.error) {
+      res.status(400).send(postToDeleteValidated.error.message);
+      return;
+    }
+    const { id } = postToDeleteValidated.value;
+    await new PostsService(getConnection()).delete(id);
+
     res.sendStatus(200);
   } catch (e) {
     res.status(500).send(e.message);
