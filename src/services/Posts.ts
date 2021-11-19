@@ -10,14 +10,14 @@ export default class PostsService {
     this.connection = connection;
   }
 
-  async findPosts(q: string): Promise<IPostData[]> {
+  async findPosts(q?: string): Promise<IPostData[]> {
 
     const results = await this.connection
       .getRepository(Post)
       .createQueryBuilder('post')
       .where(
         'post.author LIKE :q OR post.title LIKE :q',
-        { q: `%${q}%` })
+        { q: `%${q ? q : ''}%` })
       .getMany();
 
     return results.map((entity: Post) => (
