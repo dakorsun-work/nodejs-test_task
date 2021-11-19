@@ -11,11 +11,11 @@ setupConnection().then(async (connection) => {
     })
   );
   const valuesArray = [];
-  for (let i = 10; i > 0; i--) {
+  for (let i = 40; i > 0; i--) {
     valuesArray.push({
       title: lorem(2),
       author: lorem(2),
-      content: lorem(45),
+      content: lorem(Math.floor((Math.random() * (60 - 10)) + 10)),
     });
   }
 
