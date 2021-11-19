@@ -40,4 +40,12 @@ export default class PostsService {
       .execute();
   }
 
+  async update(id: number, values: Pick<IPostData, 'title' | 'content'> ): Promise<void> {
+    await this.connection
+      .createQueryBuilder()
+      .update(Post)
+      .set(values)
+      .where('id = :id', { id })
+      .execute();
+  }
 }

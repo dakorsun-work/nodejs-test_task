@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { createPost, getPosts } from './controller';
+import { createPost, getPosts, updatePost } from './controller';
 
 const postsRouter = Router();
 
@@ -7,10 +7,7 @@ postsRouter.get('/', getPosts);
 
 postsRouter.post('/', createPost);
 
-postsRouter.put('/:id', (req, res) => {
-  // todo tbd
-  res.sendStatus(200);
-});
+postsRouter.put('/:id', updatePost);
 
 postsRouter.delete('/:id', (req, res) => {
   // todo tbd
