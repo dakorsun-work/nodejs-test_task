@@ -1,14 +1,11 @@
 import { Router } from 'express';
-import { getPosts } from './controller';
+import { createPost, getPosts } from './controller';
 
 const postsRouter = Router();
 
 postsRouter.get('/', getPosts);
 
-postsRouter.post('/', (req, res) => {
-  // todo tbd
-  res.sendStatus(200);
-});
+postsRouter.post('/', createPost);
 
 postsRouter.put('/:id', (req, res) => {
   // todo tbd

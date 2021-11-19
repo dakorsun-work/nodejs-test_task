@@ -1,4 +1,3 @@
-
 /* eslint-disable import/no-cycle */
 import {
   Column,
@@ -6,7 +5,7 @@ import {
 } from 'typeorm';
 import { DefaultEntity, IDefaultData } from './utils';
 
-export interface IPostData extends IDefaultData {
+export interface IPostData {
   author: string,
   title: string,
   content: string
@@ -17,11 +16,14 @@ export interface IPostData extends IDefaultData {
 export default abstract class Post extends DefaultEntity {
   @Column({ type: 'varchar', length: 30 })
     author: string;
+
   @Column({ type: 'varchar', length: 30 })
     title: string;
+
   @Column({ type: 'varchar', length: 1000 })
     content: string;
-  getPostData(): IPostData {
+
+  getPostData(): IPostData & IDefaultData {
     return Object.assign({}, {
       id: this.id,
       author: this.author,
