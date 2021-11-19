@@ -19,6 +19,7 @@ export default class PostsService {
       .where(
         'post.author LIKE :q OR post.title LIKE :q',
         { q: `%${q ? q : ''}%` })
+      .orderBy('LENGTH(post.content)', 'ASC')
       .getMany();
 
     return results.map((entity: Post) => (
