@@ -1,11 +1,9 @@
 import { Router } from 'express';
+import { countWords } from './controller';
 
 
 const wordsRouter = Router();
 
-wordsRouter.get('/', (req, res) => {
-  // todo tbd
-  res.sendStatus(200);
-});
+wordsRouter.get('/', countWords);
 
 export default wordsRouter;

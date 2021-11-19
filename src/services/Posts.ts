@@ -1,5 +1,6 @@
 import { Connection } from 'typeorm';
 import Post, { IPostData } from '../entity/Post';
+import { IDefaultData } from '../entity/utils';
 
 
 export default class PostsService {
@@ -10,7 +11,7 @@ export default class PostsService {
     this.connection = connection;
   }
 
-  async findPosts(q?: string): Promise<IPostData[]> {
+  async findPosts(q?: string): Promise<(IPostData & IDefaultData)[]> {
 
     const results = await this.connection
       .getRepository(Post)
@@ -40,7 +41,7 @@ export default class PostsService {
       .execute();
   }
 
-  async update(id: number, values: Pick<IPostData, 'title' | 'content'> ): Promise<void> {
+  async update(id: number, values: Pick<IPostData, 'title' | 'content'>): Promise<void> {
     await this.connection
       .createQueryBuilder()
       .update(Post)
