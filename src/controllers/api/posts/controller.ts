@@ -13,7 +13,7 @@ export const createPostSchema = Joi.object({
 export const updatePostSchema = Joi.object({
   id: Joi.number().required(),
   title: Joi.string().optional().min(1).max(30),
-  content: Joi.string().optional().min(1).max(1000),
+  author: Joi.string().optional().min(1).max(30),
 });
 
 export const deletePostSchema = Joi.object({
